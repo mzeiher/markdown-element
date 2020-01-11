@@ -1,0 +1,27 @@
+{
+  "name": "markdown-element",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "index.js",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "highlight.js": "^9.17.1",
+    "markdown-it": "^10.0.0",
+    "tslib": "^1.10.0"
+  },
+  "scripts": {
+    "build": "tsc && webpack --config webpack.config.cjs",
+    "watch": "webpack --config webpack.config.cjs -w"
+  },
+  "devDependencies": {
+    "@types/highlight.js": "^9.12.3",
+    "@types/markdown-it": "^0.0.9",
+    "@types/node": "^13.1.6",
+    "github-markdown-css": "^3.0.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

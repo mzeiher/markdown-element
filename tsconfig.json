@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "target": "ES2018",
+        "sourceMap": true,
+        "declaration": true,
+        "lib": [
+            "ES2019",
+            "ES2018",
+            "ES2017",
+            "ES2016",
+            "ES2015",
+            "DOM"
+        ],
+        "outDir": ".",
+        "declarationDir": "."
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "src/*.ts",
+        "src/**/*.ts"
+    ]
+}
