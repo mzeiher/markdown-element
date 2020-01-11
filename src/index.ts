@@ -53,6 +53,7 @@ ${ atomlight}
 </div>
 `
 
+// for modern browsers which support adoptedStylesheets
 const styleSheets = [];
 if (supportsAdoptingStyleSheets) {
     [githubstyle, atomlight].map((value) => {
@@ -112,7 +113,7 @@ export class RenderMarkdown extends HTMLElement {
 
     onSlotChange = () => {
         if (this.textContent.trim()) {
-            this.renderText(this.textContent);
+            this.renderText(unindent(this.textContent));
         }
     }
 
@@ -131,3 +132,24 @@ export class RenderMarkdown extends HTMLElement {
     }
 }
 window.customElements.define('markdown-element', RenderMarkdown);
+
+function unindent(text: string) {
+    if (!text)
+        return text;
+    const lines = text.replace(/\t/g, '  ').split('\n');
+    const indent = lines.reduce((prev: number, line: string) => {
+        if (/^\s*$/.test(line)) {
+            return prev;  // ignore blank lines.
+        }
+
+        const lineIndent = line.match(/^(\s*)/)[0].length;
+        if (prev === null) {
+            return lineIndent;
+        }
+        return lineIndent < prev ? lineIndent : prev;
+    }, null);
+
+    return lines.map((line) => {
+        return line.substr(indent);
+    }).join('\n');
+}
